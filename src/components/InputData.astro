@@ -1,0 +1,46 @@
+<form class="flex flex-col gap-5 mt-6">
+  <div class="flex gap-4">
+    <input type="number" id="firstParameter">
+    <label for="firstParameter">First Parameter</label>
+  </div>
+
+  <div class="flex gap-4">
+    <input type="number" id="secondParameter">
+    <label for="secondParameter">Second Parameter</label>
+  </div>
+
+  <button type="submit" class="btn btn-outline btn-primary">Check Result</button>
+</form>
+
+<p class="mt-6">
+  Your result is: <span id="result"></span>
+</p>
+
+<script>
+  const sumParameters = (event: SubmitEvent) => {
+    event.preventDefault(); // Prevent the form submission
+
+    // Get the input elements and cast them to HTMLInputElement
+    const firstInput = document.getElementById('firstParameter') as HTMLInputElement;
+    const secondInput = document.getElementById('secondParameter') as HTMLInputElement;
+
+    // Check if the inputs exist and get their values
+    if (firstInput && secondInput) {
+      const firstParameter = parseInt(firstInput.value, 10) || 0;
+      const secondParameter = parseInt(secondInput.value, 10) || 0;
+
+      //Calculate the result
+      const result = firstParameter + secondParameter;
+
+      // Update the result in the DOM
+      const resultElement = document.getElementById('result');
+
+      if (resultElement) {
+        resultElement.textContent = result.toString();
+      }
+    }
+  }
+
+  // Add event listener to the form
+  document.querySelector('form')?.addEventListener('submit', sumParameters);
+</script>
