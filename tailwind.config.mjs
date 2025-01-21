@@ -2,9 +2,14 @@
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+        playwrite: ['Playwrite IN', 'sans-serif'], // Add the custom font
+      },
+		},
 	},
 	plugins: [
-		require('daisyui'),
+		require("@tailwindcss/typography"),
+		require("daisyui"),
 	],
 }

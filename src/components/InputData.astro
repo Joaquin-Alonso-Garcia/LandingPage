@@ -1,46 +1,229 @@
-<form class="flex flex-col gap-5 mt-6">
-  <div class="flex gap-4">
-    <input type="number" id="firstParameter">
-    <label for="firstParameter">First Parameter</label>
+<h3 class="font-bold text-[36px] mt-5">Patient Information</h3>
+
+<form class="flex flex-col gap-10 mt-4 max-w-96" id="modelData">
+  <div class="flex flex-col gap-2">
+    <label for="age">Age</label>
+    <input type="number" id="age" name="age" min="0" class="input input-bordered w-full max-w-xs">
   </div>
 
-  <div class="flex gap-4">
-    <input type="number" id="secondParameter">
-    <label for="secondParameter">Second Parameter</label>
+  <div class="flex flex-col gap-2">
+    <label for="gender">Gender</label>
+    <select name="gender" id="gender" class="select select-bordered w-full max-w-xs">
+      <option disabled selected>Select your gender</option>
+      <option value="1">male</option>
+      <option value="0">female</option>
+    </select>
   </div>
 
-  <button type="submit" class="btn btn-outline btn-primary">Check Result</button>
+  <div class="flex flex-col gap-2">
+    <label for="education">Years of education</label>
+    <input type="number" id="education" name="education"  min="0" class="input input-bordered w-full max-w-xs">
+  </div>
+
+  <h3 class="font-bold text-[36px]">Demographics</h3>
+
+  <div class="flex flex-col gap-4">
+    <h4 class="font-bold text-2xl">Ethnicity</h4>
+
+    <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
+      <input type="radio" name="ethnicity" id="hisp" value="hisp" class="radio radio-sm radio-secondary">
+      <label for="hisp" class="label-text">Hisp/Latino</label>
+    </div>
+    <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
+      <input type="radio" name="ethnicity" id="notHisp" value="notHisp" class="radio radio-sm radio-secondary">
+      <label for="notHisp" class="label-text">Not Hisp/Latino</label>
+    </div>
+    <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
+      <input type="radio" name="ethnicity" id="unknown" value="unknown" class="radio radio-sm radio-secondary">
+      <label for="unknown" class="label-text">unknown</label>
+    </div>
+  </div>
+
+  <div class="flex gap-4 flex-col">
+    <h4 class="font-bold text-2xl">Race</h4>
+
+    <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
+      <input type="radio" name="race" id="white" value="white" class="radio radio-sm radio-secondary">
+      <label for="white" class="label-text">White</label>
+    </div>
+    <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
+      <input type="radio" name="race" id="black" value="black" class="radio radio-sm radio-secondary">
+      <label for="black" class="label-text">Black</label>
+    </div>
+    <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
+      <input type="radio" name="race" id="asian" value="asian" class="radio radio-sm radio-secondary">
+      <label for="asian" class="label-text">Asian</label>
+    </div>
+  </div>
+
+  <h3 class="font-bold text-[36px]">Genetic Information</h3>
+
+  <div class="flex flex-col gap-2">
+    <label for="allele">APOE Allele Type</label>
+    <select name="allele" id="allele" class="select select-bordered w-full max-w-xs">
+      <option disabled selected>Select Your APOE Allele Type</option>
+      <option value="apoe0">APOE4_0</option>
+      <option value="apoe1">APOE4_1</option>
+      <option value="apoe2">APOE4_2</option>
+    </select>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="genotype">APOE4 Genotype</label>
+    <select name="genotype" id="genotype" class="select select-bordered w-full max-w-xs">
+      <option disabled selected>Select Your APOE4 Genotype</option>
+      <option value="gen0">2.2</option>
+      <option value="gen1">2.3</option>
+      <option value="gen2">2.4</option>
+      <option value="gen3">3.3</option>
+      <option value="gen4">3.4</option>
+      <option value="gen5">4.4</option>
+    </select>
+  </div>
+
+  <div class="flex gap-4 flex-col">
+    <h4 class="font-bold text-2xl">Imputed Genotype</h4>
+
+    <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
+      <input type="radio" name="imputedG" id="true" value="1" class="radio radio-sm radio-secondary">
+      <label for="true" class="label-text">True</label>
+    </div>
+    <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
+      <input type="radio" name="imputedG" id="false" value="0" class="radio radio-sm radio-secondary">
+      <label for="false" class="label-text">False</label>
+    </div>
+  </div>
+
+  <h3 class="font-bold text-[36px]">Cognitive Assesment</h3>
+
+  <div class="flex flex-col gap-2">
+    <label for="age">MMSE Score</label>
+    <input type="number" name="mmseScore" id="mmseScore" class="input input-bordered w-full max-w-xs">
+  </div>
+
+  <button type="submit" class="btn btn-outline btn-primary text-xl">Simulate</button>
 </form>
 
-<p class="mt-6">
-  Your result is: <span id="result"></span>
+<p class="mt-6 font-bold text-3xl">
+  Your result is: <span class="hidden" id="result"></span>
 </p>
 
 <script>
+  const resultSpan = document.getElementById('result');
+
   const sumParameters = (event: SubmitEvent) => {
     event.preventDefault(); // Prevent the form submission
+    const modelForm = document.getElementById('modelData') as HTMLFormElement;
+    const modelDataForm = new FormData(modelForm);
 
     // Get the input elements and cast them to HTMLInputElement
-    const firstInput = document.getElementById('firstParameter') as HTMLInputElement;
-    const secondInput = document.getElementById('secondParameter') as HTMLInputElement;
+    const age = modelDataForm.get('age');
+    const genderMale = modelDataForm.get('gender') === '1' ? 1 : 0;
+    const genderFemale = modelDataForm.get('gender') === '0' ? 1 : 0;
+    const education = modelDataForm.get('education');
+    const ethnicityHisp = modelDataForm.get('ethnicity') === 'hisp' ? 1 : 0;
+    const ethnicityNotHisp = modelDataForm.get('ethnicity') === 'notHisp' ? 1 : 0;
+    const ethnicityUnknown = modelDataForm.get('ethnicity') === 'unknown' ? 1 : 0;
+    const raceWhite = modelDataForm.get('race') === 'white' ? 1 : 0;
+    const raceBlack = modelDataForm.get('race')  === 'black' ? 1 : 0;
+    const raceAsian = modelDataForm.get('race')  === 'asian' ? 1 : 0;
+    const allele0 = modelDataForm.get('allele') === 'apoe0' ? 1 : 0;
+    const allele1 = modelDataForm.get('allele') === 'apoe1' ? 1 : 0;
+    const allele2 = modelDataForm.get('allele') === 'apoe2' ? 1 : 0;
+    const genotype0 = modelDataForm.get('genotype') === 'gen0' ? 1 : 0;
+    const genotype1 = modelDataForm.get('genotype') === 'gen1' ? 1 : 0;
+    const genotype2 = modelDataForm.get('genotype') === 'gen2' ? 1 : 0;
+    const genotype3 = modelDataForm.get('genotype') === 'gen3' ? 1 : 0;
+    const genotype4 = modelDataForm.get('genotype') === 'gen4' ? 1 : 0;
+    const genotype5 = modelDataForm.get('genotype') === 'gen5' ? 1 : 0;
+    const imputedGTrue = modelDataForm.get('imputedG') === '1' ? 1 : 0;
+    const imputedGFalse = modelDataForm.get('imputedG') === '0' ? 1 : 0;
+    const mmseScore = modelDataForm.get('mmseScore');
 
-    // Check if the inputs exist and get their values
-    if (firstInput && secondInput) {
-      const firstParameter = parseInt(firstInput.value, 10) || 0;
-      const secondParameter = parseInt(secondInput.value, 10) || 0;
+    const features = [
+      age,
+      education,
+      mmseScore,
+      genderFemale,
+      genderMale,
+      allele0,
+      allele1,
+      allele2,
+      ethnicityHisp,
+      ethnicityNotHisp,
+      ethnicityUnknown,
+      imputedGFalse,
+      imputedGTrue,
+      genotype0,
+      genotype1,
+      genotype2,
+      genotype3,
+      genotype4,
+      genotype5,
+      raceAsian,
+      raceBlack,
+      raceWhite,
+    ]
 
-      //Calculate the result
-      const result = firstParameter + secondParameter;
+    const probability = predictLogisticRegression(features);
 
-      // Update the result in the DOM
-      const resultElement = document.getElementById('result');
-
-      if (resultElement) {
-        resultElement.textContent = result.toString();
+    if (resultSpan) {
+      if (probability > 0.5) {
+        resultSpan.classList.remove('hidden');
+        resultSpan.classList.add('glass', 'px-4', 'py-4', 'rounded-2xl', 'block', 'text-2xl');
+        resultSpan.textContent = "You have a higher probability of developing Mild Cognitive Impairment or Alzheimer's disease in the future."
+      } else {
+        resultSpan.classList.remove('hidden');
+        resultSpan.classList.add('glass', 'px-4', 'py-4', 'rounded-2xl', 'block', 'text-2xl');
+        resultSpan.textContent = "You have a normal cognitive function."
       }
     }
   }
 
+  function predictLogisticRegression(features: any) {
+    // Coefficients corresponding to the variables
+    const coefficients = [
+        1.13526396e-04, -8.55439583e-03, 6.21798095e-02,
+        -1.75729140e-01, 1.67496210e-01, -1.54520581e-01,
+        -3.28869092e-02, 1.79174560e-01, 3.97015222e-01,
+        -2.43002032e-02, -3.80947949e-01, 1.81134139e-02,
+        -2.63463440e-02, -8.30454057e-02, -1.58680075e-01,
+        -1.02813135e-01, 8.72048999e-02, 6.99262258e-02,
+        1.79174560e-01, -2.98915584e-02, 4.07185325e-02,
+        -1.90599042e-02
+    ];
+
+    // Intercept (set this to the actual value if available)
+    const intercept = 1.71931762e-03;
+
+    // Variable names for reference
+    const variableNames = [
+      'AGE', 'PTEDUCAT', 'MMSE', 'PTGENDER_Female', 'PTGENDER_Male', 'APOE4_0',
+      'APOE4_1', 'APOE4_2', 'PTETHCAT_Hisp/Latino', 'PTETHCAT_Not Hisp/Latino',
+      'PTETHCAT_Unknown', 'imputed_genotype_False', 'imputed_genotype_True',
+      'APOE Genotype_2,2', 'APOE Genotype_2,3', 'APOE Genotype_2,4',
+      'APOE Genotype_3,3', 'APOE Genotype_3,4', 'APOE Genotype_4,4',
+      'PTRACCAT_Asian', 'PTRACCAT_Black', 'PTRACCAT_White'
+    ];
+
+    // Ensure the number of features matches the coefficients
+    if (features.length !== coefficients.length) {
+      throw new Error("Mismatch between number of features and coefficients.");
+    }
+
+    // Calculate the logit
+    let logit = intercept;
+
+    for (let i = 0; i < features.length; i++) {
+      logit += coefficients[i] * features[i];
+    }
+
+    // Apply the logistic (sigmoid) function
+    const probability = 1 / (1 + Math.exp(-logit));
+
+    return probability;
+  }
+
   // Add event listener to the form
-  document.querySelector('form')?.addEventListener('submit', sumParameters);
+  document.getElementById('modelData')?.addEventListener('submit', sumParameters);
 </script>
