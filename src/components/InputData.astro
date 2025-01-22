@@ -3,12 +3,12 @@
 <form class="flex flex-col gap-10 mt-4 max-w-96" id="modelData">
   <div class="flex flex-col gap-2">
     <label for="age">Age</label>
-    <input type="number" id="age" name="age" min="0" class="input input-bordered w-full max-w-xs">
+    <input type="number" id="age" name="age" min="0" class="input input-bordered w-full max-w-xs" required>
   </div>
 
   <div class="flex flex-col gap-2">
     <label for="gender">Gender</label>
-    <select name="gender" id="gender" class="select select-bordered w-full max-w-xs">
+    <select name="gender" id="gender" class="select select-bordered w-full max-w-xs" required>
       <option disabled selected>Select your gender</option>
       <option value="1">male</option>
       <option value="0">female</option>
@@ -17,7 +17,7 @@
 
   <div class="flex flex-col gap-2">
     <label for="education">Years of education</label>
-    <input type="number" id="education" name="education"  min="0" class="input input-bordered w-full max-w-xs">
+    <input type="number" id="education" name="education"  min="0" class="input input-bordered w-full max-w-xs" required>
   </div>
 
   <h3 class="font-bold text-[36px]">Demographics</h3>
@@ -26,15 +26,15 @@
     <h4 class="font-bold text-2xl">Ethnicity</h4>
 
     <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
-      <input type="radio" name="ethnicity" id="hisp" value="hisp" class="radio radio-sm radio-secondary">
+      <input type="radio" name="ethnicity" id="hisp" value="hisp" class="radio radio-sm radio-secondary" required>
       <label for="hisp" class="label-text">Hisp/Latino</label>
     </div>
     <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
-      <input type="radio" name="ethnicity" id="notHisp" value="notHisp" class="radio radio-sm radio-secondary">
+      <input type="radio" name="ethnicity" id="notHisp" value="notHisp" class="radio radio-sm radio-secondary" required>
       <label for="notHisp" class="label-text">Not Hisp/Latino</label>
     </div>
     <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
-      <input type="radio" name="ethnicity" id="unknown" value="unknown" class="radio radio-sm radio-secondary">
+      <input type="radio" name="ethnicity" id="unknown" value="unknown" class="radio radio-sm radio-secondary" required>
       <label for="unknown" class="label-text">unknown</label>
     </div>
   </div>
@@ -43,15 +43,15 @@
     <h4 class="font-bold text-2xl">Race</h4>
 
     <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
-      <input type="radio" name="race" id="white" value="white" class="radio radio-sm radio-secondary">
+      <input type="radio" name="race" id="white" value="white" class="radio radio-sm radio-secondary" required>
       <label for="white" class="label-text">White</label>
     </div>
     <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
-      <input type="radio" name="race" id="black" value="black" class="radio radio-sm radio-secondary">
+      <input type="radio" name="race" id="black" value="black" class="radio radio-sm radio-secondary" required>
       <label for="black" class="label-text">Black</label>
     </div>
     <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
-      <input type="radio" name="race" id="asian" value="asian" class="radio radio-sm radio-secondary">
+      <input type="radio" name="race" id="asian" value="asian" class="radio radio-sm radio-secondary" required>
       <label for="asian" class="label-text">Asian</label>
     </div>
   </div>
@@ -60,7 +60,7 @@
 
   <div class="flex flex-col gap-2">
     <label for="allele">APOE Allele Type</label>
-    <select name="allele" id="allele" class="select select-bordered w-full max-w-xs">
+    <select name="allele" id="allele" class="select select-bordered w-full max-w-xs" required>
       <option disabled selected>Select Your APOE Allele Type</option>
       <option value="apoe0">APOE4_0</option>
       <option value="apoe1">APOE4_1</option>
@@ -70,7 +70,7 @@
 
   <div class="flex flex-col gap-2">
     <label for="genotype">APOE4 Genotype</label>
-    <select name="genotype" id="genotype" class="select select-bordered w-full max-w-xs">
+    <select name="genotype" id="genotype" class="select select-bordered w-full max-w-xs" required>
       <option disabled selected>Select Your APOE4 Genotype</option>
       <option value="gen0">2.2</option>
       <option value="gen1">2.3</option>
@@ -85,11 +85,11 @@
     <h4 class="font-bold text-2xl">Imputed Genotype</h4>
 
     <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
-      <input type="radio" name="imputedG" id="true" value="1" class="radio radio-sm radio-secondary">
+      <input type="radio" name="imputedG" id="true" value="1" class="radio radio-sm radio-secondary" required>
       <label for="true" class="label-text">True</label>
     </div>
     <div class="flex gap-6 rounded-3xl bg-white py-2 px-2 max-w-[180px]">
-      <input type="radio" name="imputedG" id="false" value="0" class="radio radio-sm radio-secondary">
+      <input type="radio" name="imputedG" id="false" value="0" class="radio radio-sm radio-secondary" required>
       <label for="false" class="label-text">False</label>
     </div>
   </div>
@@ -98,14 +98,14 @@
 
   <div class="flex flex-col gap-2">
     <label for="age">MMSE Score</label>
-    <input type="number" name="mmseScore" id="mmseScore" class="input input-bordered w-full max-w-xs">
+    <input type="number" name="mmseScore" id="mmseScore" class="input input-bordered w-full max-w-xs" required>
   </div>
 
   <button type="submit" class="btn btn-outline btn-primary text-xl">Simulate</button>
 </form>
 
 <p class="mt-6 font-bold text-3xl">
-  Your result is: <span class="hidden" id="result"></span>
+  Your result is: <span class="hidden glass px-4 py-4 rounded-2xl block text-2xl" id="result"></span>
 </p>
 
 <script>
@@ -165,18 +165,11 @@
       raceWhite,
     ]
 
-    const probability = predictLogisticRegression(features);
+    const probability = predictMultinomialLogisticRegression(features);
 
     if (resultSpan) {
-      if (probability > 0.5) {
-        resultSpan.classList.remove('hidden');
-        resultSpan.classList.add('glass', 'px-4', 'py-4', 'rounded-2xl', 'block', 'text-2xl');
-        resultSpan.textContent = "You have a higher probability of developing Mild Cognitive Impairment or Alzheimer's disease in the future."
-      } else {
-        resultSpan.classList.remove('hidden');
-        resultSpan.classList.add('glass', 'px-4', 'py-4', 'rounded-2xl', 'block', 'text-2xl');
-        resultSpan.textContent = "You have a normal cognitive function."
-      }
+      resultSpan.classList.remove('hidden');
+      resultSpan.textContent = `You have a higher probability of developing ${probability.label} in the future.`
     }
   }
 
@@ -222,6 +215,88 @@
     const probability = 1 / (1 + Math.exp(-logit));
 
     return probability;
+  }
+
+  function predictMultinomialLogisticRegression(features: any) {
+    // Coefficients for each class
+    const coefficients = [
+        [ // Coefficients for class AD
+          -3.49908941e-02,  2.43113895e-03, -1.06780855e+00,
+          6.76685692e-02, -5.37315212e-02, -3.57986472e-01,
+          1.52409406e-01,  2.19514114e-01, -5.12426978e-01,
+          2.75737570e-02,  4.98790269e-01, -1.08435696e-01,
+          1.22372744e-01, -2.58832298e-03, -3.27430566e-01,
+          2.48483054e-01, -2.79675824e-02, -9.60736485e-02,
+          2.19514114e-01, -2.37277730e-02, -5.00892238e-01,
+          5.38557059e-01
+        ],
+        [ // Coefficients for class MCI
+          3.48773677e-02,  6.12325689e-03,  1.00562874e+00,
+          1.08060571e-01, -1.13764688e-01,  5.12507053e-01,
+          -1.19522496e-01, -3.98688674e-01,  1.15411756e-01,
+          -3.27355375e-03, -1.17842320e-01,  9.03222825e-02,
+          -9.60264004e-02,  8.56337287e-02,  4.86110642e-01,
+          -1.45669919e-01, -5.92373174e-02,  2.61474226e-02,
+          -3.98688674e-01,  5.36193314e-02,  4.60173706e-01,
+          -5.19497155e-01
+        ],
+        [ // Coefficients for class CN
+          1.13526396e-04, -8.55439583e-03,  6.21798095e-02,
+          -1.75729140e-01,  1.67496210e-01, -1.54520581e-01,
+          -3.28869092e-02,  1.79174560e-01,  3.97015222e-01,
+          -2.43002032e-02, -3.80947949e-01,  1.81134139e-02,
+          -2.63463440e-02, -8.30454057e-02, -1.58680075e-01,
+          -1.02813135e-01,  8.72048999e-02,  6.99262258e-02,
+          1.79174560e-01, -2.98915584e-02,  4.07185325e-02,
+          -1.90599042e-02
+        ]
+    ];
+
+    // Intercepts for each class
+    const intercepts = [
+        2.97878511e+01, // Intercept for AD (replace with the actual value)
+        -2.97895704e+01,  // Intercept for CN (replace with the actual value)
+        1.71931762e-03   // Intercept for MCI (replace with the actual value)
+    ];
+
+    // Class labels
+    const classLabels = ["AD", "CN", "MCI"];
+
+    // Ensure features length matches the coefficients length
+    if (features.length !== coefficients[0].length) {
+        throw new Error("Mismatch between number of features and coefficients.");
+    }
+
+    // Calculate logits for each class
+    const logits = coefficients.map((classCoefficients, classIndex) => {
+        let logit = intercepts[classIndex];
+        for (let i = 0; i < features.length; i++) {
+            logit += classCoefficients[i] * features[i];
+        }
+        return logit;
+    });
+
+    // Apply softmax to calculate probabilities
+    const expLogits = logits.map(logit => Math.exp(logit));
+    const sumExpLogits = expLogits.reduce((a, b) => a + b, 0);
+    const probabilities = expLogits.map(expLogit => expLogit / sumExpLogits);
+
+    // Find the class with the highest probability
+    let maxProbability = -Infinity;
+    let winningClassIndex = -1;
+
+    probabilities.forEach((prob, index) => {
+        if (prob > maxProbability) {
+            maxProbability = prob;
+            winningClassIndex = index;
+        }
+    });
+
+    // Return the result
+    return {
+        probability: maxProbability,
+        label: classLabels[winningClassIndex]
+    };
   }
 
   // Add event listener to the form
