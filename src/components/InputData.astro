@@ -111,7 +111,7 @@
 <script>
   const resultSpan = document.getElementById('result');
 
-  const sumParameters = (event: SubmitEvent) => {
+  const getProbability = (event: SubmitEvent) => {
     event.preventDefault(); // Prevent the form submission
     const modelForm = document.getElementById('modelData') as HTMLFormElement;
     const modelDataForm = new FormData(modelForm);
@@ -171,50 +171,6 @@
       resultSpan.classList.remove('hidden');
       resultSpan.textContent = `You have a higher probability of developing ${probability.label} in the future.`
     }
-  }
-
-  function predictLogisticRegression(features: any) {
-    // Coefficients corresponding to the variables
-    const coefficients = [
-        1.13526396e-04, -8.55439583e-03, 6.21798095e-02,
-        -1.75729140e-01, 1.67496210e-01, -1.54520581e-01,
-        -3.28869092e-02, 1.79174560e-01, 3.97015222e-01,
-        -2.43002032e-02, -3.80947949e-01, 1.81134139e-02,
-        -2.63463440e-02, -8.30454057e-02, -1.58680075e-01,
-        -1.02813135e-01, 8.72048999e-02, 6.99262258e-02,
-        1.79174560e-01, -2.98915584e-02, 4.07185325e-02,
-        -1.90599042e-02
-    ];
-
-    // Intercept (set this to the actual value if available)
-    const intercept = 1.71931762e-03;
-
-    // Variable names for reference
-    const variableNames = [
-      'AGE', 'PTEDUCAT', 'MMSE', 'PTGENDER_Female', 'PTGENDER_Male', 'APOE4_0',
-      'APOE4_1', 'APOE4_2', 'PTETHCAT_Hisp/Latino', 'PTETHCAT_Not Hisp/Latino',
-      'PTETHCAT_Unknown', 'imputed_genotype_False', 'imputed_genotype_True',
-      'APOE Genotype_2,2', 'APOE Genotype_2,3', 'APOE Genotype_2,4',
-      'APOE Genotype_3,3', 'APOE Genotype_3,4', 'APOE Genotype_4,4',
-      'PTRACCAT_Asian', 'PTRACCAT_Black', 'PTRACCAT_White'
-    ];
-
-    // Ensure the number of features matches the coefficients
-    if (features.length !== coefficients.length) {
-      throw new Error("Mismatch between number of features and coefficients.");
-    }
-
-    // Calculate the logit
-    let logit = intercept;
-
-    for (let i = 0; i < features.length; i++) {
-      logit += coefficients[i] * features[i];
-    }
-
-    // Apply the logistic (sigmoid) function
-    const probability = 1 / (1 + Math.exp(-logit));
-
-    return probability;
   }
 
   function predictMultinomialLogisticRegression(features: any) {
@@ -300,5 +256,5 @@
   }
 
   // Add event listener to the form
-  document.getElementById('modelData')?.addEventListener('submit', sumParameters);
+  document.getElementById('modelData')?.addEventListener('submit', getProbability);
 </script>
